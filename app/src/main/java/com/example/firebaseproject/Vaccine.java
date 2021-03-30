@@ -11,6 +11,12 @@ public class Vaccine
         this.location=location;
     }
 
+    public Vaccine()
+    {
+        date=-1;
+        location="";
+    }
+
     public void setDate(int date)
     {
         this.date=date;
