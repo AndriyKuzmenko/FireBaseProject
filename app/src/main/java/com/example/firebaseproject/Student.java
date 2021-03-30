@@ -67,7 +67,7 @@ public class Student
 
     public String getLastName()
     {
-        this.lastName=lastName;
+        return lastName;
     }
 
     public int getGrade()
