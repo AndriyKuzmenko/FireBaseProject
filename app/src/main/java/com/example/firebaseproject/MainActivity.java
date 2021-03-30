@@ -42,10 +42,13 @@ public class MainActivity extends AppCompatActivity
         myRef=database.getReference("Students");
         boolean bo=canVaccinate.isChecked();
         st=new Student(Integer.parseInt(grade.getText().toString()),Integer.parseInt(class1.getText().toString()),!bo);
-        myRef.child(name1).setValue(st);
         if(bo)
         {
             getDate();
+        }
+        else
+        {
+            myRef.child(name1).setValue(st);
         }
     }
 

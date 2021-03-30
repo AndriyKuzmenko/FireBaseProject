@@ -11,6 +11,14 @@ public class Student
         this.grade=grade;
         this.class1=class1;
         this.cant=cant;
+        first=second=new Vaccine();
+    }
+
+    public Student()
+    {
+        grade=0;
+        class1=0;
+        cant=true;
         first=second=null;
     }
 
