@@ -11,7 +11,7 @@ public class Student
         this.grade=grade;
         this.class1=class1;
         this.cant=cant;
-        first=second=new Vaccine();
+        first=second=null;
     }
 
     public void setGrade(int Grade)
