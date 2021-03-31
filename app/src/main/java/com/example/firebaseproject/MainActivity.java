@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -95,5 +96,10 @@ public class MainActivity extends AppCompatActivity
 
         AlertDialog ad=adb.create();
         ad.show();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main, menu);
     }
 }
