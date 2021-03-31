@@ -42,8 +42,13 @@ public class SecondVaccine extends AppCompatActivity
                 for(DataSnapshot data : dataSnapshot.getChildren())
                 {
                     String temp=data.getKey();
-                    studentsNames.add(temp);
-                    studentsData.add(data.getValue(Student.class));
+                    Student t=data.getValue(Student.class);
+
+                    if(t.getFirst().getDate()!=-1 && t.getSecond().getDate()==-1)
+                    {
+                        studentsNames.add(temp);
+                        studentsData.add(t);
+                    }
                 }
                 showData();
             }
