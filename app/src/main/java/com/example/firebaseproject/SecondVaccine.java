@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,10 +24,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class SecondVaccine extends AppCompatActivity implements AdapterView.OnItemClickListener
+//Originally, this activity was just for adding a second vaccine for students that only recorded info about the first one
+//This is why it's called SecondVaccine
+
+public class SecondVaccine extends AppCompatActivity implements View.OnCreateContextMenuListener
 {
     ArrayList<String> studentsNames;
     ArrayList<Student> studentsData;
+    ArrayList<Boolean> studentsNotSecond;
     ListView studentsList;
     String name;
     Student student;
@@ -33,6 +39,7 @@ public class SecondVaccine extends AppCompatActivity implements AdapterView.OnIt
     DatabaseReference refStudents;
     AlertDialog.Builder adb;
     ArrayAdapter<String> adp;
+    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,9 +49,10 @@ public class SecondVaccine extends AppCompatActivity implements AdapterView.OnIt
 
         studentsNames=new ArrayList<>();
         studentsData=new ArrayList<>();
+        studentsNotSecond=new ArrayList<>();
         studentsList=(ListView)findViewById(R.id.studentsList);
 
-        studentsList.setOnItemClickListener(this);
+        studentsList.setOnCreateContextMenuListener(this);
 
         database=FirebaseDatabase.getInstance("https://homework-9f97d-default-rtdb.firebaseio.com/");
         refStudents=database.getReference("Students");
@@ -59,11 +67,9 @@ public class SecondVaccine extends AppCompatActivity implements AdapterView.OnIt
                     String temp=data.getKey();
                     Student t=data.getValue(Student.class);
 
-                    if(t.getFirst().getDate()!=-1 && t.getSecond().getDate()==-1)
-                    {
-                        studentsNames.add(temp);
-                        studentsData.add(t);
-                    }
+                    studentsNames.add(temp);
+                    studentsData.add(t);
+                    studentsNotSecond.add(!t.getCant() && t.getSecond().getDate()==-1);
                 }
                 showData();
             }
@@ -85,7 +91,8 @@ public class SecondVaccine extends AppCompatActivity implements AdapterView.OnIt
         Toast.makeText(this,"Only students who got just one vaccine appear on this screen", Toast.LENGTH_LONG).show();
     }
 
-    /**
+    /*
+
      * Callback method to be invoked when an item in this AdapterView has
      * been clicked.
      * <p>
@@ -97,7 +104,7 @@ public class SecondVaccine extends AppCompatActivity implements AdapterView.OnIt
      *                 will be a view provided by the adapter)
      * @param position The position of the view in the adapter.
      * @param id       The row id of the item that was clicked.
-     */
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
@@ -108,6 +115,7 @@ public class SecondVaccine extends AppCompatActivity implements AdapterView.OnIt
         studentsData.remove(student);
         adp.notifyDataSetChanged();
     }
+    */
 
     public void getDate()
     {
@@ -152,5 +160,18 @@ public class SecondVaccine extends AppCompatActivity implements AdapterView.OnIt
 
         AlertDialog ad=adb.create();
         ad.show();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+    {
+        menu.add("Change class");
+        menu.add("Change grade");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item)
+    {
+        return super.onContextItemSelected(item);
     }
 }
