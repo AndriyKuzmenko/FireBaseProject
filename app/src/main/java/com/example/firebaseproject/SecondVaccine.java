@@ -32,6 +32,7 @@ public class SecondVaccine extends AppCompatActivity implements AdapterView.OnIt
     FirebaseDatabase database;
     DatabaseReference refStudents;
     AlertDialog.Builder adb;
+    ArrayAdapter<String> adp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -77,7 +78,7 @@ public class SecondVaccine extends AppCompatActivity implements AdapterView.OnIt
 
     public void showData()
     {
-        ArrayAdapter<String> adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, studentsNames);
+        adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, studentsNames);
         studentsList.setAdapter(adp);
 
         Toast.makeText(this,"Press on a student and enter info about his second vaccine", Toast.LENGTH_LONG).show();
@@ -103,6 +104,9 @@ public class SecondVaccine extends AppCompatActivity implements AdapterView.OnIt
         name=studentsNames.get(position);
         student=studentsData.get(position);
         getDate();
+        studentsNames.remove(name);
+        studentsData.remove(student);
+        adp.notifyDataSetChanged();
     }
 
     public void getDate()
