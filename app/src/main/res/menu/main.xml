@@ -4,4 +4,9 @@
         android:id="@+id/InputScreen"
         android:title="Input Screen"
         android:orderInCategory="100"/>
+
+    <item
+        android:id="@+id/SecondScreen"
+        android:title="Add Second Vaccine"
+        android:orderInCategory="200"/>
 </menu>
