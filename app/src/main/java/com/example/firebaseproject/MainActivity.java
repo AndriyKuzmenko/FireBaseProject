@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity
                 String location=e.getText().toString();
                 Vaccine temp=new Vaccine(date,location);
                 st.setFirst(temp);
-                myRef.child("Students").child(name1).setValue(st);
+                myRef.child(name1).setValue(st);
             }
         });
 

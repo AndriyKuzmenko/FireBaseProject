@@ -2,8 +2,8 @@ package com.example.firebaseproject;
 
 public class Vaccine
 {
-    public int date;
-    public String location;
+    private int date;
+    private String location;
 
     public Vaccine(int date, String location)
     {
@@ -14,7 +14,7 @@ public class Vaccine
     public Vaccine()
     {
         date=-1;
-        location="North Korea";
+        location="";
     }
 
     public void setDate(int date)
@@ -27,12 +27,12 @@ public class Vaccine
         this.location=location;
     }
 
-    private int getDate()
+    public int getDate()
     {
         return date;
     }
 
-    private String getLocation()
+    public String getLocation()
     {
         return location;
     }
