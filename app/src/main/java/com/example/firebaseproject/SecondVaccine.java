@@ -167,11 +167,30 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
     {
         menu.add("Change class");
         menu.add("Change grade");
+
+        AdapterView.AdapterContextMenuInfo menuInfo1=(AdapterView.AdapterContextMenuInfo)menuInfo;
+        position=menuInfo1.position;
+        if(studentsNotSecond.get(position))
+        {
+            menu.add("Add Second vaccine");
+        }
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item)
     {
+        String s=item.getTitle().toString();
+
+        if(s.equals("Add Second vaccine"))
+        {
+            name=studentsNames.get(position);
+            student=studentsData.get(position);
+            getDate();
+            studentsNames.remove(name);
+            studentsData.remove(student);
+            adp.notifyDataSetChanged();
+        }
+
         return super.onContextItemSelected(item);
     }
 }
