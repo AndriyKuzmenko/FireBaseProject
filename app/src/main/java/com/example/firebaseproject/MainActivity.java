@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
         st=new Student(Integer.parseInt(grade.getText().toString()),Integer.parseInt(class1.getText().toString()),!bo);
         if(bo)
         {
-            getDate();
+            getDate(1);
         }
         else
         {
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void getDate()
+    public void getDate(final int x)
     {
         adb=new AlertDialog.Builder(this);
         adb.setTitle("Choose date");
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(DialogInterface dialog, int which)
             {
                 int temp=d1.getYear()+d1.getMonth()*10000+d1.getDayOfMonth()*1000000;
-                getLocation(temp);
+                getLocation(temp,x);
             }
         });
 
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity
         ad.show();
     }
 
-    public void getLocation(final int date)
+    public void getLocation(final int date, final int x)
     {
         adb=new AlertDialog.Builder(this);
         adb.setTitle("Choose location");
@@ -91,7 +91,43 @@ public class MainActivity extends AppCompatActivity
             {
                 String location=e.getText().toString();
                 Vaccine temp=new Vaccine(date,location);
-                st.setFirst(temp);
+                if(x==1)
+                {
+                    st.setFirst(temp);
+                    askSecond();
+                }
+                else
+                {
+                    st.setSecond(temp);
+                    myRef.child(name1).setValue(st);
+                }
+            }
+        });
+
+        AlertDialog ad=adb.create();
+        ad.show();
+    }
+
+    public void askSecond()
+    {
+        adb=new AlertDialog.Builder(this);
+        adb.setTitle("Did "+name1+" get two vaccines");
+        adb.setCancelable(false);
+
+        adb.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                getDate(2);
+            }
+        });
+
+        adb.setNegativeButton("No", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
                 myRef.child(name1).setValue(st);
             }
         });
