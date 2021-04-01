@@ -23,6 +23,7 @@
             android:layout_weight="2" />
 
         <ListView
+            android:id="@+id/studentsList1"
             android:layout_width="match_parent"
             android:layout_height="0px"
             android:layout_weight="10" />
@@ -79,6 +80,7 @@
                     <RadioButton
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:checked="false"
                         android:fontFamily="serif"
                         android:text="All vaccinated students"
                         android:textColor="#050332"
