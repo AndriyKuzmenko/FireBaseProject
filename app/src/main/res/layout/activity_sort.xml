@@ -52,6 +52,7 @@
                         android:layout_height="10px" />
 
                     <RadioButton
+                        android:id="@+id/byClass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
@@ -65,6 +66,7 @@
                         android:layout_height="10px" />
 
                     <RadioButton
+                        android:id="@+id/byGrade"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
@@ -78,6 +80,7 @@
                         android:layout_height="10px" />
 
                     <RadioButton
+                        android:id="@+id/allVaccinated"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:checked="false"
@@ -92,6 +95,7 @@
                         android:layout_height="10px" />
 
                     <RadioButton
+                        android:id="@+id/allAlergic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"

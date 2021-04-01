@@ -29,6 +29,7 @@ public class SortActivity extends AppCompatActivity
     ArrayAdapter<String> adp;
     int position;
     ListView studentsList1;
+    int byClass,byGrade,allVaccinated,allAlergic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,6 +42,11 @@ public class SortActivity extends AppCompatActivity
         refStudents=database.getReference("Students");
         studentsNames=new ArrayList<>();
         studentsData=new ArrayList<>();
+
+        byClass=R.id.byClass;
+        byGrade=R.id.byGrade;
+        allVaccinated=R.id.allVaccinated;
+        allAlergic=R.id.allAlergic;
 
         refStudents.addListenerForSingleValueEvent(new ValueEventListener()
         {
