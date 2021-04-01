@@ -60,6 +60,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         alergicStudents=new ArrayList<>();
         spinner=(Spinner)findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
+        studentsList1.setOnItemClickListener(this);
 
         byClass=R.id.byClass;
         byGrade=R.id.byGrade;
@@ -113,6 +114,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         studentsList1.setAdapter(adp);
         list=studentsNames;
 
+        if(studentsNames!=this.studentsNames) return;
         Toast.makeText(this,"Press on a student to see his data", Toast.LENGTH_LONG).show();
         Toast.makeText(this,"You can filter the students using the filters on the bottom of the sreen.", Toast.LENGTH_LONG).show();
     }
@@ -169,7 +171,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         String message="Name: "+st+"\nClass: "+stu.getGrade()+" "+stu.getClass1()+"\nAlergic: "+stu.getCant();
         if(!stu.getCant())
         {
-            message+="\nFirst Vaccine date: "+new Date(stu.getFirst().getDate()+"\nFirst Vaccine location: "+stu.getFirst().getLocation());
+            message+="\nFirst Vaccine date: "+new Date(stu.getFirst().getDate())+"\nFirst Vaccine location: "+stu.getFirst().getLocation();
         }
         adb.setMessage(message);
         AlertDialog ad=adb.create();
