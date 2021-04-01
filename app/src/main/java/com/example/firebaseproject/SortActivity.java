@@ -51,6 +51,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         studentsGrades=new ArrayList<>();
         studentsGradesString=new ArrayList<>();
         spinner=(Spinner)findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(this);
 
         byClass=R.id.byClass;
         byGrade=R.id.byGrade;
@@ -126,7 +127,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
-
+        int x=5;
     }
 
     /**
