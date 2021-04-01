@@ -91,10 +91,11 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
         Toast.makeText(this,"Only students who got just one vaccine appear on this screen", Toast.LENGTH_LONG).show();
     }
 
-    public void getDate()
+    public void getDate(final int b)
     {
         adb=new AlertDialog.Builder(this);
-        adb.setTitle("Choose date");
+        if(b==0)adb.setTitle("Choose date");
+        else adb.setTitle("Current Date: "+student.getFirst().getDate());
         final DatePicker d1=new DatePicker(this);
         adb.setView(d1);
 
@@ -104,7 +105,12 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
             public void onClick(DialogInterface dialog, int which)
             {
                 int temp=d1.getYear()+d1.getMonth()*10000+d1.getDayOfMonth()*1000000;
-                getLocation(temp);
+                if(b==0) getLocation(temp);
+                else if (b==1)
+                {
+                    student.getFirst().setDate(temp);
+                    refStudents.child(name).setValue(student);
+                }
             }
         });
 
@@ -170,8 +176,12 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
 
         if(s.equals("Add Second vaccine"))
         {
-            getDate();
+            getDate(0);
             studentsNotSecond.set(position,false);
+        }
+        else if(s.equals("Correct First date"))
+        {
+            getDate(1);
         }
 
         return super.onContextItemSelected(item);
