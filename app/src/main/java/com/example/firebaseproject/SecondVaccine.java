@@ -273,6 +273,11 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
             Intent si=new Intent(this, MainActivity.class);
             startActivity(si);
         }
+        else if(i==R.id.SortScreen)
+        {
+            Intent si=new Intent(this, SortActivity.class);
+            startActivity(si);
+        }
         return true;
     }
 }

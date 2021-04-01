@@ -188,6 +188,11 @@ public class MainActivity extends AppCompatActivity
             Intent si=new Intent(this, SecondVaccine.class);
             startActivity(si);
         }
+        else if(i==R.id.SortScreen)
+        {
+            Intent si=new Intent(this, SortActivity.class);
+            startActivity(si);
+        }
         return true;
     }
 }

@@ -9,4 +9,9 @@
         android:id="@+id/SecondScreen"
         android:orderInCategory="200"
         android:title="Update Student Info" />
+
+    <item
+        android:id="@+id/SortScreen"
+        android:orderInCategory="300"
+        android:title="Sort students" />
 </menu>
