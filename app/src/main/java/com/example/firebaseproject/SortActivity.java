@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -19,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class SortActivity extends AppCompatActivity
+public class SortActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener
 {
     ArrayList<String> studentsNames,studentsClasses,studentsGradesString;
     ArrayList<Student> studentsData;
@@ -30,7 +31,7 @@ public class SortActivity extends AppCompatActivity
     DatabaseReference refStudents;
     AlertDialog.Builder adb;
     ArrayAdapter<String> adp,adp1;
-    int position;
+    int position,id;
     ListView studentsList1;
     int byClass,byGrade,allVaccinated,allAlergic;
     Spinner spinner;
@@ -100,12 +101,64 @@ public class SortActivity extends AppCompatActivity
 
     public void radioButtonPressed(View view)
     {
-        int id=view.getId();
+        id=view.getId();
 
         if(id==byGrade)
         {
             adp1=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,studentsGradesString);
             spinner.setAdapter(adp1);
         }
+    }
+
+    /**
+     * Callback method to be invoked when an item in this AdapterView has
+     * been clicked.
+     * <p>
+     * Implementers can call getItemAtPosition(position) if they need
+     * to access the data associated with the selected item.
+     *
+     * @param parent   The AdapterView where the click happened.
+     * @param view     The view within the AdapterView that was clicked (this
+     *                 will be a view provided by the adapter)
+     * @param position The position of the view in the adapter.
+     * @param id       The row id of the item that was clicked.
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+    {
+
+    }
+
+    /**
+     * <p>Callback method to be invoked when an item in this view has been
+     * selected. This callback is invoked only when the newly selected
+     * position is different from the previously selected position or if
+     * there was no selected item.</p>
+     * <p>
+     * Implementers can call getItemAtPosition(position) if they need to access the
+     * data associated with the selected item.
+     *
+     * @param parent   The AdapterView where the selection happened
+     * @param view     The view within the AdapterView that was clicked
+     * @param position The position of the view in the adapter
+     * @param id       The row id of the item that is selected
+     */
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+    {
+        int grade=studentsGrades.get(position);
+    }
+
+    /**
+     * Callback method to be invoked when the selection disappears from this
+     * view. The selection can disappear for instance when touch is activated
+     * or when the adapter becomes empty.
+     *
+     * @param parent The AdapterView that now contains no selected item.
+     */
+    @Override
+    public void onNothingSelected(AdapterView<?> parent)
+    {
+
     }
 }
