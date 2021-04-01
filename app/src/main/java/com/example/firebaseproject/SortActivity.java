@@ -30,8 +30,6 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayList<String> studentsNames,studentsClasses,studentsGradesString,vaccinatedStudents,alergicStudents;
     ArrayList<Student> studentsData;
     ArrayList<Integer> studentsGrades;
-    String name;
-    Student student;
     FirebaseDatabase database;
     DatabaseReference refStudents;
     AlertDialog.Builder adb;

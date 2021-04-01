@@ -97,8 +97,8 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
     {
         adb=new AlertDialog.Builder(this);
         if(b==0)adb.setTitle("Choose date");
-        else if(b==1) adb.setTitle("First Date: "+student.getFirst().getDate());
-        else if(b==2) adb.setTitle("Second Date: "+student.getSecond().getDate());
+        else if(b==1) adb.setTitle("First Date: "+dateToString(student.getFirst().getDate()));
+        else if(b==2) adb.setTitle("Second Date: "+dateToString(student.getSecond().getDate()));
         final DatePicker d1=new DatePicker(this);
         adb.setView(d1);
 
@@ -279,5 +279,10 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
             startActivity(si);
         }
         return true;
+    }
+
+    public String dateToString(int x)
+    {
+        return (x/1000000)+"/"+(x%10000/100)+"/"+(x%10000);
     }
 }
