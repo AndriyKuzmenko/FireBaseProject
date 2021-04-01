@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 
 public class SortActivity extends AppCompatActivity
 {
-    ArrayList<String> studentsNames,studentsClasses,list;
+    ArrayList<String> studentsNames,studentsClasses,list,studentsGradesString;
     ArrayList<Student> studentsData;
     ArrayList<Integer> studentsGrades;
     String name;
@@ -32,6 +33,7 @@ public class SortActivity extends AppCompatActivity
     int position;
     ListView studentsList1;
     int byClass,byGrade,allVaccinated,allAlergic;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,6 +48,9 @@ public class SortActivity extends AppCompatActivity
         studentsData=new ArrayList<>();
         studentsClasses=new ArrayList<>();
         studentsGrades=new ArrayList<>();
+        studentsGradesString=new ArrayList<>();
+        adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, list);
+        spinner=(Spinner)findViewById(R.id.spinner);
 
         byClass=R.id.byClass;
         byGrade=R.id.byGrade;
@@ -67,6 +72,7 @@ public class SortActivity extends AppCompatActivity
                     if(!studentsGrades.contains(t.getGrade()))
                     {
                         studentsGrades.add(t.getGrade());
+                        studentsGradesString.add(""+t.getGrade());
                     }
                     if(!studentsClasses.contains(t.getGrade()+" "+t.getClass1()))
                     {
@@ -97,5 +103,10 @@ public class SortActivity extends AppCompatActivity
     {
         int id=view.getId();
 
+        if(id==byGrade)
+        {
+            list=studentsGradesString;
+            spinner.setAdapter(adp);
+        }
     }
 }
