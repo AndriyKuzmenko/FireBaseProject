@@ -134,7 +134,11 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
             spinner.setAdapter(adp1);
             showData(alergicStudents);
         }
-
+        else if(id==byClass)
+        {
+            adp1=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,studentsClasses);
+            spinner.setAdapter(adp1);
+        }
     }
 
     /**
@@ -177,9 +181,25 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         {
             int grade = studentsGrades.get(position);
             ArrayList<String> list = new ArrayList<>();
-            for (int i = 0; i < studentsData.size(); i++)
+            for (int i=0; i<studentsData.size(); i++)
             {
                 if (studentsData.get(i).getGrade() == grade)
+                {
+                    list.add(studentsNames.get(i));
+                }
+            }
+
+            showData(list);
+        }
+        else if(this.id==byClass)
+        {
+            String[] class1=studentsClasses.get(position).split(" ");
+            ArrayList<String> list = new ArrayList<>();
+            int grade=Integer.parseInt(class1[0]);
+            int class2=Integer.parseInt(class1[1]);
+            for (int i=0; i<studentsData.size(); i++)
+            {
+                if (studentsData.get(i).getGrade()==grade && studentsData.get(i).getClass1()==class2)
                 {
                     list.add(studentsNames.get(i));
                 }
