@@ -84,20 +84,32 @@
                         android:textColor="#050332"
                         android:textSize="20sp"
                         android:textStyle="bold" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="10px" />
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:text="All alergic students"
+                        android:textColor="#050332"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
                 </RadioGroup>
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="10px" />
 
-                <RadioButton
+                <Spinner
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="serif"
-                    android:text="All alergic students"
-                    android:textColor="#050332"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10px" />
             </LinearLayout>
         </ScrollView>
 
