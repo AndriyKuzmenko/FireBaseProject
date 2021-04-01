@@ -147,6 +147,17 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
         int grade=studentsGrades.get(position);
+        ArrayList<String> list=new ArrayList<>();
+        for(int i=0; i<studentsData.size(); i++)
+        {
+            if(studentsData.get(i).getGrade()==grade)
+            {
+                list.add(studentsNames.get(i));
+            }
+        }
+
+        adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, list);
+        studentsList1.setAdapter(adp);
     }
 
     /**
