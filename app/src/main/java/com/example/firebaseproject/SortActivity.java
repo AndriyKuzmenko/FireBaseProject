@@ -171,7 +171,11 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         String message="Name: "+st+"\nClass: "+stu.getGrade()+" "+stu.getClass1()+"\nAlergic: "+stu.getCant();
         if(!stu.getCant())
         {
-            message+="\nFirst Vaccine date: "+new Date(stu.getFirst().getDate())+"\nFirst Vaccine location: "+stu.getFirst().getLocation();
+            message+="\nFirst Vaccine date: "+dateToString(stu.getFirst().getDate())+"\nFirst Vaccine location: "+stu.getFirst().getLocation();
+            if(stu.getSecond().getDate()!=-1)
+            {
+                message+="\nSecond Vaccine date: "+dateToString(stu.getSecond().getDate())+"\nFirst Vaccine location: "+stu.getSecond().getLocation();
+            }
         }
         adb.setMessage(message);
         AlertDialog ad=adb.create();
@@ -261,5 +265,10 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
             startActivity(si);
         }
         return true;
+    }
+
+    public String dateToString(int x)
+    {
+        return (x/1000000)+"/"+(x/10000%100)+"/"+(x/10000);
     }
 }
