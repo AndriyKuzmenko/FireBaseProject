@@ -95,7 +95,8 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
     {
         adb=new AlertDialog.Builder(this);
         if(b==0)adb.setTitle("Choose date");
-        else adb.setTitle("Current Date: "+student.getFirst().getDate());
+        else if(b==1) adb.setTitle("First Date: "+student.getFirst().getDate());
+        else if(b==2) adb.setTitle("Second Date: "+student.getSecond().getDate());
         final DatePicker d1=new DatePicker(this);
         adb.setView(d1);
 
@@ -111,6 +112,11 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
                     student.getFirst().setDate(temp);
                     refStudents.child(name).setValue(student);
                 }
+                else if (b==2)
+                {
+                    student.getSecond().setDate(temp);
+                    refStudents.child(name).setValue(student);
+                }
             }
         });
 
@@ -123,6 +129,14 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
         adb=new AlertDialog.Builder(this);
         adb.setTitle("Choose location");
         final EditText e=new EditText(this);
+        if(date==1)
+        {
+            e.setText(student.getFirst().getLocation());
+        }
+        else if(date==2)
+        {
+            e.setText(student.getSecond().getLocation());
+        }
         e.setHint("Location");
         adb.setView(e);
 
@@ -132,8 +146,22 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
             public void onClick(DialogInterface dialog, int which)
             {
                 String location=e.getText().toString();
-                Vaccine temp=new Vaccine(date,location);
-                student.setSecond(temp);
+                Vaccine temp;
+                if(date>2)
+                {
+                    temp=new Vaccine(date,location);
+                    student.setSecond(temp);
+                }
+                else if(date==2)
+                {
+                    temp=student.getSecond();
+                    temp.setLocation(location);
+                }
+                else
+                {
+                    temp=student.getFirst();
+                    temp.setLocation(location);
+                }
                 refStudents.child(name).setValue(student);
             }
         });
@@ -183,7 +211,49 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
         {
             getDate(1);
         }
+        else if(s.equals("Correct second date"))
+        {
+            getDate(2);
+        }
+        else if(s.equals("Correct First location"))
+        {
+            getLocation(1);
+        }
+        else if(s.equals("Correct second location"))
+        {
+            getLocation(2);
+        }
+        else if(s.equals("Change class"))
+        {
+            changeClass();
+        }
 
         return super.onContextItemSelected(item);
+    }
+
+    public void changeClass()
+    {
+        adb=new AlertDialog.Builder(this);
+        adb.setTitle("Change class");
+        adb.setMessage("Please type two numebrs: the grade and the class. 11E=11 5");
+        final EditText e=new EditText(this);
+        e.setText(student.getGrade()+" "+student.getClass1());
+        e.setHint("Class");
+        adb.setView(e);
+
+        adb.setPositiveButton("Save Location", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                String[] temp=e.getText().toString().split(" ");
+                student.setGrade(Integer.parseInt(temp[0]));
+                student.setClass1(Integer.parseInt(temp[1]));
+                refStudents.child(name).setValue(student);
+            }
+        });
+
+        AlertDialog ad=adb.create();
+        ad.show();
     }
 }

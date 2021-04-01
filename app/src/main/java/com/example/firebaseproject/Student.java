@@ -22,7 +22,7 @@ public class Student
         first=second=null;
     }
 
-    public void setGrade(int Grade)
+    public void setGrade(int grade)
     {
         this.grade=grade;
     }
