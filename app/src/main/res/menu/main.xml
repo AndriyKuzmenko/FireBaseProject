@@ -7,6 +7,6 @@
 
     <item
         android:id="@+id/SecondScreen"
-        android:title="Add Second Vaccine"
-        android:orderInCategory="200"/>
+        android:orderInCategory="200"
+        android:title="Update Student Info" />
 </menu>

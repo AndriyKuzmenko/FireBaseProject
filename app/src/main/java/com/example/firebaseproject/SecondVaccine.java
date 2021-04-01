@@ -89,8 +89,8 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
         adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, studentsNames);
         studentsList.setAdapter(adp);
 
-        Toast.makeText(this,"Press on a student and enter info about his second vaccine", Toast.LENGTH_LONG).show();
-        Toast.makeText(this,"Only students who got just one vaccine appear on this screen", Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"This is a list of all the students you entered", Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Long click on the one you want to update and choose which parameter you want to update", Toast.LENGTH_LONG).show();
     }
 
     public void getDate(final int b)
