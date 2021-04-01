@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SortActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener
 {
@@ -34,10 +36,11 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
     DatabaseReference refStudents;
     AlertDialog.Builder adb;
     ArrayAdapter<String> adp,adp1;
-    int position,id;
+    int id;
     ListView studentsList1;
     int byClass,byGrade,allVaccinated,allAlergic;
     Spinner spinner;
+    ArrayList<String> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -108,6 +111,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
     {
         adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, studentsNames);
         studentsList1.setAdapter(adp);
+        list=studentsNames;
 
         Toast.makeText(this,"Press on a student to see his data", Toast.LENGTH_LONG).show();
         Toast.makeText(this,"You can filter the students using the filters on the bottom of the sreen.", Toast.LENGTH_LONG).show();
@@ -157,7 +161,19 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
-
+        adb=new AlertDialog.Builder(this);
+        adb.setTitle("Student Info");
+        String st=list.get(position);
+        int i=studentsNames.indexOf(st);
+        Student stu=studentsData.get(i);
+        String message="Name: "+st+"\nClass: "+stu.getGrade()+" "+stu.getClass1()+"\nAlergic: "+stu.getCant();
+        if(!stu.getCant())
+        {
+            message+="\nFirst Vaccine date: "+new Date(stu.getFirst().getDate()+"\nFirst Vaccine location: "+stu.getFirst().getLocation());
+        }
+        adb.setMessage(message);
+        AlertDialog ad=adb.create();
+        ad.show();
     }
 
     /**
@@ -180,7 +196,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         if(this.id==byGrade)
         {
             int grade = studentsGrades.get(position);
-            ArrayList<String> list = new ArrayList<>();
+            list = new ArrayList<>();
             for (int i=0; i<studentsData.size(); i++)
             {
                 if (studentsData.get(i).getGrade() == grade)
@@ -194,7 +210,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         else if(this.id==byClass)
         {
             String[] class1=studentsClasses.get(position).split(" ");
-            ArrayList<String> list = new ArrayList<>();
+            list=new ArrayList<>();
             int grade=Integer.parseInt(class1[0]);
             int class2=Integer.parseInt(class1[1]);
             for (int i=0; i<studentsData.size(); i++)
