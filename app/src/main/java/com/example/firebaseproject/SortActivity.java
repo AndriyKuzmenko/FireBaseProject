@@ -174,7 +174,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
             message+="\nFirst Vaccine date: "+dateToString(stu.getFirst().getDate())+"\nFirst Vaccine location: "+stu.getFirst().getLocation();
             if(stu.getSecond().getDate()!=-1)
             {
-                message+="\nSecond Vaccine date: "+dateToString(stu.getSecond().getDate())+"\nFirst Vaccine location: "+stu.getSecond().getLocation();
+                message+="\nSecond Vaccine date: "+dateToString(stu.getSecond().getDate())+"\nSecond Vaccine location: "+stu.getSecond().getLocation();
             }
         }
         adb.setMessage(message);
@@ -269,6 +269,6 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public String dateToString(int x)
     {
-        return (x/1000000)+"/"+(x/10000%100)+"/"+(x/10000);
+        return (x/1000000)+"/"+(x%10000/100)+"/"+(x%10000);
     }
 }
