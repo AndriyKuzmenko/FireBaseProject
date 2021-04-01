@@ -5,8 +5,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -174,7 +176,6 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
         menu.add("Change class");
-        menu.add("Change grade");
 
         AdapterView.AdapterContextMenuInfo menuInfo1=(AdapterView.AdapterContextMenuInfo)menuInfo;
         position=menuInfo1.position;
@@ -255,5 +256,23 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
 
         AlertDialog ad=adb.create();
         ad.show();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int i=item.getItemId();
+        if(i==R.id.InputScreen)
+        {
+            Intent si=new Intent(this, MainActivity.class);
+            startActivity(si);
+        }
+        return true;
     }
 }
