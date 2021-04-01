@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class SortActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener
 {
-    ArrayList<String> studentsNames,studentsClasses,studentsGradesString;
+    ArrayList<String> studentsNames,studentsClasses,studentsGradesString,vaccinatedStudents,alergicStudents;
     ArrayList<Student> studentsData;
     ArrayList<Integer> studentsGrades;
     String name;
@@ -53,6 +53,8 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         studentsClasses=new ArrayList<>();
         studentsGrades=new ArrayList<>();
         studentsGradesString=new ArrayList<>();
+        vaccinatedStudents=new ArrayList<>();
+        alergicStudents=new ArrayList<>();
         spinner=(Spinner)findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
 
@@ -82,8 +84,16 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
                     {
                         studentsClasses.add(t.getGrade()+" "+t.getClass1());
                     }
+                    if(t.getCant())
+                    {
+                        alergicStudents.add(temp);
+                    }
+                    else
+                    {
+                        vaccinatedStudents.add(temp);
+                    }
                 }
-                showData();
+                showData(studentsNames);
             }
 
             @Override
@@ -94,7 +104,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         });
     }
 
-    public void showData()
+    public void showData(ArrayList<String> studentsNames)
     {
         adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, studentsNames);
         studentsList1.setAdapter(adp);
@@ -105,13 +115,26 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public void radioButtonPressed(View view)
     {
-        id=view.getId();
+        this.id=view.getId();
 
         if(id==byGrade)
         {
             adp1=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,studentsGradesString);
             spinner.setAdapter(adp1);
         }
+        else if(id==allVaccinated)
+        {
+            adp1=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,new String[]{});
+            spinner.setAdapter(adp1);
+            showData(vaccinatedStudents);
+        }
+        else if(id==allAlergic)
+        {
+            adp1=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,new String[]{});
+            spinner.setAdapter(adp1);
+            showData(alergicStudents);
+        }
+
     }
 
     /**
@@ -130,7 +153,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id)
     {
-        int x=5;
+
     }
 
     /**
@@ -150,18 +173,20 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
     {
-        int grade=studentsGrades.get(position);
-        ArrayList<String> list=new ArrayList<>();
-        for(int i=0; i<studentsData.size(); i++)
+        if(this.id==byGrade)
         {
-            if(studentsData.get(i).getGrade()==grade)
+            int grade = studentsGrades.get(position);
+            ArrayList<String> list = new ArrayList<>();
+            for (int i = 0; i < studentsData.size(); i++)
             {
-                list.add(studentsNames.get(i));
+                if (studentsData.get(i).getGrade() == grade)
+                {
+                    list.add(studentsNames.get(i));
+                }
             }
-        }
 
-        adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, list);
-        studentsList1.setAdapter(adp);
+            showData(list);
+        }
     }
 
     /**
