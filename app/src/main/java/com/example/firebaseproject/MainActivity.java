@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity
         {
             myRef.child(name1).setValue(st);
         }
+        studentsNames.add(name1);
     }
 
     public void getDate(final int x)
