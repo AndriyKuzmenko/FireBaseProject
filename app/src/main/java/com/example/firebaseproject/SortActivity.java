@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -19,8 +20,9 @@ import java.util.ArrayList;
 
 public class SortActivity extends AppCompatActivity
 {
-    ArrayList<String> studentsNames;
+    ArrayList<String> studentsNames,studentsClasses,list;
     ArrayList<Student> studentsData;
+    ArrayList<Integer> studentsGrades;
     String name;
     Student student;
     FirebaseDatabase database;
@@ -42,6 +44,9 @@ public class SortActivity extends AppCompatActivity
         refStudents=database.getReference("Students");
         studentsNames=new ArrayList<>();
         studentsData=new ArrayList<>();
+        studentsClasses=new ArrayList<>();
+        studentsGrades=new ArrayList<>();
+        list=new ArrayList<>();
 
         byClass=R.id.byClass;
         byGrade=R.id.byGrade;
@@ -79,5 +84,11 @@ public class SortActivity extends AppCompatActivity
 
         Toast.makeText(this,"Press on a student to see his data", Toast.LENGTH_LONG).show();
         Toast.makeText(this,"You can filter the students using the filters on the bottom of the sreen.", Toast.LENGTH_LONG).show();
+    }
+
+    public void radioButtonPressed(View view)
+    {
+        int id=view.getId();
+
     }
 }
