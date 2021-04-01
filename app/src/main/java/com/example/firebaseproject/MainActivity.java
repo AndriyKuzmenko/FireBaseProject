@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity
         name1=firstName.getText().toString()+" "+lastName.getText().toString();
         if(studentsNames.contains(name1))
         {
-            Toast.makeText(this,"You have already entered "+name1+"! Please enter another student!",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"You have already entered "+name1+"! Please enter another student!!!",Toast.LENGTH_LONG).show();
             return;
         }
         boolean bo=canVaccinate.isChecked();
