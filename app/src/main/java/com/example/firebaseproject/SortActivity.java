@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -172,5 +175,28 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> parent)
     {
 
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main, menu);
+
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int i=item.getItemId();
+        if(i==R.id.InputScreen)
+        {
+            Intent si=new Intent(this, MainActivity.class);
+            startActivity(si);
+        }
+        else if(i==R.id.SecondScreen)
+        {
+            Intent si=new Intent(this, SecondVaccine.class);
+            startActivity(si);
+        }
+        return true;
     }
 }
