@@ -46,7 +46,6 @@ public class SortActivity extends AppCompatActivity
         studentsData=new ArrayList<>();
         studentsClasses=new ArrayList<>();
         studentsGrades=new ArrayList<>();
-        list=new ArrayList<>();
 
         byClass=R.id.byClass;
         byGrade=R.id.byGrade;
@@ -65,6 +64,14 @@ public class SortActivity extends AppCompatActivity
 
                     studentsNames.add(temp);
                     studentsData.add(t);
+                    if(!studentsGrades.contains(t.getGrade()))
+                    {
+                        studentsGrades.add(t.getGrade());
+                    }
+                    if(!studentsClasses.contains(t.getGrade()+" "+t.getClass1()))
+                    {
+                        studentsClasses.add(t.getGrade()+" "+t.getClass1());
+                    }
                 }
                 showData();
             }
