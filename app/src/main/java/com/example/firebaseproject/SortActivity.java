@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class SortActivity extends AppCompatActivity
 {
-    ArrayList<String> studentsNames,studentsClasses,list,studentsGradesString;
+    ArrayList<String> studentsNames,studentsClasses,studentsGradesString;
     ArrayList<Student> studentsData;
     ArrayList<Integer> studentsGrades;
     String name;
@@ -29,7 +29,7 @@ public class SortActivity extends AppCompatActivity
     FirebaseDatabase database;
     DatabaseReference refStudents;
     AlertDialog.Builder adb;
-    ArrayAdapter<String> adp;
+    ArrayAdapter<String> adp,adp1;
     int position;
     ListView studentsList1;
     int byClass,byGrade,allVaccinated,allAlergic;
@@ -49,7 +49,6 @@ public class SortActivity extends AppCompatActivity
         studentsClasses=new ArrayList<>();
         studentsGrades=new ArrayList<>();
         studentsGradesString=new ArrayList<>();
-        adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, list);
         spinner=(Spinner)findViewById(R.id.spinner);
 
         byClass=R.id.byClass;
@@ -105,8 +104,8 @@ public class SortActivity extends AppCompatActivity
 
         if(id==byGrade)
         {
-            list=studentsGradesString;
-            spinner.setAdapter(adp);
+            adp1=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,studentsGradesString);
+            spinner.setAdapter(adp1);
         }
     }
 }
