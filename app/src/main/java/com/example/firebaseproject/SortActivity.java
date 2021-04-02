@@ -262,6 +262,11 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
             Intent si=new Intent(this, SecondVaccine.class);
             startActivity(si);
         }
+        else if(i==R.id.creditsScreen)
+        {
+            Intent si=new Intent(this, CreditsActivity.class);
+            startActivity(si);
+        }
         return true;
     }
 

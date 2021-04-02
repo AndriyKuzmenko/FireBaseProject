@@ -174,12 +174,22 @@ public class MainActivity extends AppCompatActivity
         ad.show();
     }
 
+    /**
+     * @param menu - the menu
+     * @return - creates a menu with a list of all activities
+     */
+
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.main, menu);
 
         return true;
     }
+
+    /**
+     * @param item - the item that was selected
+     * @return - when the user selects an item, this code will go to the specified activity.
+     */
 
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -192,6 +202,11 @@ public class MainActivity extends AppCompatActivity
         else if(i==R.id.SortScreen)
         {
             Intent si=new Intent(this, SortActivity.class);
+            startActivity(si);
+        }
+        else if(i==R.id.creditsScreen)
+        {
+            Intent si=new Intent(this, CreditsActivity.class);
             startActivity(si);
         }
         return true;

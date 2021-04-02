@@ -14,4 +14,9 @@
         android:id="@+id/SortScreen"
         android:orderInCategory="300"
         android:title="Sort students" />
+
+    <item
+        android:id="@+id/creditsScreen"
+        android:orderInCategory="400"
+        android:title="Credits" />
 </menu>
