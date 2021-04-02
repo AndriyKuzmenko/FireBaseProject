@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -106,6 +107,11 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         });
     }
 
+    /**
+     * @param studentsNames - an array list with all the names of the sudents that need to be shown on the screen
+     * @return shows all the students on a ListView.
+     */
+
     public void showData(ArrayList<String> studentsNames)
     {
         adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, studentsNames);
@@ -117,6 +123,10 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         Toast.makeText(this,"You can filter the students using the filters on the bottom of the sreen.", Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * @param view - the radio button pressed
+     * @return this method checks which radioButtton was pressed and filters the students.
+     */
     public void radioButtonPressed(View view)
     {
         this.id=view.getId();
@@ -193,6 +203,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
      * @param view     The view within the AdapterView that was clicked
      * @param position The position of the view in the adapter
      * @param id       The row id of the item that is selected
+     * @return This function creates a list of studets.
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
@@ -242,12 +253,22 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
+    /**
+     * @param menu - the menu
+     * @return - creates a menu with a list of all activities
+     */
+
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.main, menu);
 
         return true;
     }
+
+    /**
+     * @param item - the item that was selected
+     * @return - when the user selects an item, this code will go to the specified activity.
+     */
 
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -269,6 +290,11 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         }
         return true;
     }
+
+    /**
+     * @param x - the sate stored in an integer variable
+     * @return converts it to string. 12115678 - > 12/11/5678
+     */
 
     public String dateToString(int x)
     {
