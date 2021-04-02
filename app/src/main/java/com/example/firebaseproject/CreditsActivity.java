@@ -54,4 +54,15 @@ public class CreditsActivity extends AppCompatActivity
         }
         return true;
     }
+
+    /**
+     * Deletes the info about this acticity once the user exits.
+     */
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        finish();
+    }
 }

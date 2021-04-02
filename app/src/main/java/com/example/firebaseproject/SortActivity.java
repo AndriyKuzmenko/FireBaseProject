@@ -274,4 +274,15 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
     {
         return (x/1000000)+"/"+(x%10000/100)+"/"+(x%10000);
     }
+
+    /**
+     * Deletes the info about this acticity once the user exits.
+     */
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        finish();
+    }
 }
