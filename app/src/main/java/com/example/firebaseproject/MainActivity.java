@@ -72,6 +72,14 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    /**
+     * @param view - the button that was pressed
+     * @return checks if this student was already entered. If yes, it shows a toast, if not it
+     *         saves the info. If the student is not alergic, it asks for info about the
+     *         first vaccine, then if he had two vaccines, and if yes asks for info about
+     *         the second one.
+     */
+
     public void save(View view)
     {
         name1=firstName.getText().toString()+" "+lastName.getText().toString();
@@ -93,6 +101,11 @@ public class MainActivity extends AppCompatActivity
         studentsNames.add(name1);
     }
 
+    /**
+     * @param x - the nuumber of vaccine. If it's the first vaccine, enter one. Else, enter 2
+     * @return asks for a date, then for location.
+     */
+
     public void getDate(final int x)
     {
         adb=new AlertDialog.Builder(this);
@@ -113,6 +126,11 @@ public class MainActivity extends AppCompatActivity
         AlertDialog ad=adb.create();
         ad.show();
     }
+
+    /**
+     * @param date - the date previously entered.
+     * @param x - the nuumber of vaccine. If it's the first vaccine, enter one. Else, enter 2
+     */
 
     public void getLocation(final int date, final int x)
     {
@@ -145,6 +163,10 @@ public class MainActivity extends AppCompatActivity
         AlertDialog ad=adb.create();
         ad.show();
     }
+
+    /**
+     * @return asks if this student got two vaccines. If yes, asks to enter info about the second one.
+     */
 
     public void askSecond()
     {
