@@ -84,6 +84,10 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
         });
     }
 
+    /**
+     * @return shows a list of all the students on  a ListView
+     */
+
     public void showData()
     {
         adp=new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, studentsNames);
@@ -92,6 +96,12 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
         Toast.makeText(this,"This is a list of all the students you entered", Toast.LENGTH_LONG).show();
         Toast.makeText(this,"Long click on the one you want to update and choose which parameter you want to update", Toast.LENGTH_LONG).show();
     }
+
+    /**
+     * @param b - a number. this variable determines weather or not this function should ask for the location.
+     * @return If b==0, the method asks for the date then for the location. If b==1, this method corrects the date
+     *         of the first vaccine. If b==2, this method corrects the date of the second vaccine
+     */
 
     public void getDate(final int b)
     {
@@ -125,6 +135,13 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
         AlertDialog ad=adb.create();
         ad.show();
     }
+
+    /**
+     * @param date - stores the date to save for the second vaccine. If this variable stores the numebr 1, this
+     *               method corrects the location of the second vaccine. If it stores 2, it corrects the location
+     *               of the second vaccine.
+     * @return aks for the location and saves the scond vaccine or corrects the location of the first/second vaccine.
+     */
 
     public void getLocation(final int date)
     {
@@ -172,6 +189,13 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
         ad.show();
     }
 
+    /**
+     * @param menu - the context menu
+     * @param v - the view pressed
+     * @param menuInfo - the menu info.
+     * @return creates a menu depending on the student.
+     */
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
     {
@@ -197,6 +221,11 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
             menu.add("Add Second vaccine");
         }
     }
+
+    /**
+     * @param item - the item selected
+     * @return checks which item was selected and gives the user the option to correct this info.
+     */
 
     @Override
     public boolean onContextItemSelected(MenuItem item)
@@ -232,6 +261,10 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
         return super.onContextItemSelected(item);
     }
 
+    /**
+     * @return changes the class
+     */
+
     public void changeClass()
     {
         adb=new AlertDialog.Builder(this);
@@ -257,6 +290,11 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
         AlertDialog ad=adb.create();
         ad.show();
     }
+
+    /**
+     * @param menu - th
+     * @return
+     */
 
     public boolean onCreateOptionsMenu(Menu menu)
     {
