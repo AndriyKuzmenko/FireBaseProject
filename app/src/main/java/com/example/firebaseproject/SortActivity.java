@@ -29,7 +29,7 @@ import java.util.Date;
 public class SortActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener
 {
     ArrayList<String> studentsNames,studentsClasses,studentsGradesString,vaccinatedStudents,alergicStudents;
-    ArrayList<Student> studentsData;
+    ArrayList<Student> studentsData,list1;
     ArrayList<Integer> studentsGrades;
     FirebaseDatabase database;
     DatabaseReference refStudents;
@@ -210,15 +210,18 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
     {
         if(this.id==byGrade)
         {
-            int grade = studentsGrades.get(position);
-            list = new ArrayList<>();
+            int grade=studentsGrades.get(position);
+            list=new ArrayList<>();
+            list1=new ArrayList<>();
             for (int i=0; i<studentsData.size(); i++)
             {
-                if (studentsData.get(i).getGrade() == grade)
+                if (studentsData.get(i).getGrade()==grade)
                 {
                     list.add(studentsNames.get(i));
+                    list1.add(studentsData.get(i));
                 }
             }
+            list=sortByClass(list,list1);
 
             showData(list);
         }
@@ -310,5 +313,26 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onPause();
 
         finish();
+    }
+
+    public ArrayList<String> sortByClass(ArrayList<String> b, ArrayList<Student> a)
+    {
+        for(int i=0; i<a.size(); i++)
+        {
+            for(int j=0; j<a.size()-1; j++)
+            {
+                if(a.get(j).getClass1()>a.get(j+1).getClass1())
+                {
+                    Student temp = a.get(j);
+                    a.set(j, a.get(j + 1));
+                    a.set(j + 1, temp);
+
+                    String t = b.get(j);
+                    b.set(j, b.get(j + 1));
+                    b.set(j + 1, t);
+                }
+            }
+        }
+        return b;
     }
 }
