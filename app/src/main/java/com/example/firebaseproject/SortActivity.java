@@ -29,7 +29,7 @@ import java.util.Date;
 public class SortActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener
 {
     ArrayList<String> studentsNames,studentsClasses,studentsGradesString,vaccinatedStudents,alergicStudents;
-    ArrayList<Student> studentsData,list1;
+    ArrayList<Student> studentsData,list1,vaccinatedData;
     ArrayList<Integer> studentsGrades;
     FirebaseDatabase database;
     DatabaseReference refStudents;
@@ -57,6 +57,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         studentsGradesString=new ArrayList<>();
         vaccinatedStudents=new ArrayList<>();
         alergicStudents=new ArrayList<>();
+        vaccinatedData=new ArrayList<>();
         spinner=(Spinner)findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
         studentsList1.setOnItemClickListener(this);
@@ -94,8 +95,10 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
                     else
                     {
                         vaccinatedStudents.add(temp);
+                        vaccinatedData.add(t);
                     }
                 }
+                sortByGrade(vaccinatedStudents,vaccinatedData);
                 showData(studentsNames);
             }
 
@@ -316,7 +319,6 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     /**
-     *
      * @param b - an array list with all the students names
      * @param a - an array list with all the students data
      * @return sorts the array lists based on their class
@@ -329,6 +331,32 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
             for(int j=0; j<a.size()-1; j++)
             {
                 if(a.get(j).getClass1()>a.get(j+1).getClass1())
+                {
+                    Student temp = a.get(j);
+                    a.set(j, a.get(j + 1));
+                    a.set(j + 1, temp);
+
+                    String t = b.get(j);
+                    b.set(j, b.get(j + 1));
+                    b.set(j + 1, t);
+                }
+            }
+        }
+    }
+
+    /**
+     * @param b - an array list with all the students names
+     * @param a - an array list with all the students data
+     * @return sorts the array lists based on their class
+     */
+
+    public void sortByGrade(ArrayList<String> b, ArrayList<Student> a)
+    {
+        for(int i=0; i<a.size(); i++)
+        {
+            for(int j=0; j<a.size()-1; j++)
+            {
+                if(a.get(j).getGrade()>a.get(j+1).getGrade())
                 {
                     Student temp = a.get(j);
                     a.set(j, a.get(j + 1));
