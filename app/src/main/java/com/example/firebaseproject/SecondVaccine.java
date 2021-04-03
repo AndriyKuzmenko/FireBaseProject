@@ -326,7 +326,7 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
 
     public String dateToString(int x)
     {
-        return (x/1000000)+"/"+(x%10000/100)+"/"+(x%10000);
+        return (x/1000000)+"/"+(x/10000%100)+"/"+(x%10000);
     }
 
     /**

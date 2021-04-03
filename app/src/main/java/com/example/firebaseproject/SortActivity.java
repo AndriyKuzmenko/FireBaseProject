@@ -221,7 +221,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
                     list1.add(studentsData.get(i));
                 }
             }
-            list=sortByClass(list,list1);
+            sortByClass(list,list1);
 
             showData(list);
         }
@@ -301,7 +301,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
 
     public String dateToString(int x)
     {
-        return (x/1000000)+"/"+(x%10000/100)+"/"+(x%10000);
+        return (x/1000000)+"/"+(x/10000%100)+"/"+(x%10000);
     }
 
     /**
@@ -315,7 +315,14 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
         finish();
     }
 
-    public ArrayList<String> sortByClass(ArrayList<String> b, ArrayList<Student> a)
+    /**
+     *
+     * @param b - an array list with all the students names
+     * @param a - an array list with all the students data
+     * @return sorts the array lists based on their class
+     */
+
+    public void sortByClass(ArrayList<String> b, ArrayList<Student> a)
     {
         for(int i=0; i<a.size(); i++)
         {
@@ -333,6 +340,5 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
                 }
             }
         }
-        return b;
     }
 }
