@@ -292,8 +292,8 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
     }
 
     /**
-     * @param menu - th
-     * @return
+     * @param menu - the menu
+     * @return - creates a menu with a list of all activities
      */
 
     public boolean onCreateOptionsMenu(Menu menu)
@@ -302,6 +302,11 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
 
         return true;
     }
+
+    /**
+     * @param item - the item that was selected
+     * @return - when the user selects an item, this code will go to the specified activity.
+     */
 
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -323,6 +328,11 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
         }
         return true;
     }
+
+    /**
+     * @param x - the sate stored in an integer variable
+     * @return converts it to string. 12115678 - > 12/11/5678
+     */
 
     public String dateToString(int x)
     {
