@@ -229,7 +229,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
             list1=new ArrayList<>();
             for (int i=0; i<studentsData.size(); i++)
             {
-                if (studentsData.get(i).getGrade()==grade)
+                if (studentsData.get(i).getGrade()==grade && !studentsData.get(i).getCant())
                 {
                     list.add(studentsNames.get(i));
                     list1.add(studentsData.get(i));
@@ -247,7 +247,7 @@ public class SortActivity extends AppCompatActivity implements AdapterView.OnIte
             int class2=Integer.parseInt(class1[1]);
             for (int i=0; i<studentsData.size(); i++)
             {
-                if (studentsData.get(i).getGrade()==grade && studentsData.get(i).getClass1()==class2)
+                if (studentsData.get(i).getGrade()==grade && studentsData.get(i).getClass1()==class2 && !studentsData.get(i).getCant())
                 {
                     list.add(studentsNames.get(i));
                 }
