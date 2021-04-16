@@ -275,7 +275,7 @@ public class SecondVaccine extends AppCompatActivity implements View.OnCreateCon
         e.setHint("Class");
         adb.setView(e);
 
-        adb.setPositiveButton("Save Location", new DialogInterface.OnClickListener()
+        adb.setPositiveButton("Save", new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialog, int which)
